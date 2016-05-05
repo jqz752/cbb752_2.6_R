@@ -2,11 +2,10 @@
 ##### wrapper to handle FASTA (possibly containing >1 sequences) as input #####
 ##############################################################################
 
-is.enriched.wrapper = function(input.fasta, input.alphabet, target.kmer, output.csv,
+is.enriched.wrapper = function(input.fasta, target.kmer, output.csv,
                                significance = 0.05, multiple.testing = NULL){
   # input:
   # - input.fasta: fasta file containing (possibly multiple) sequences; case-insensitive
-  # - input.alphabet: a character vector of all possible letters; case-insensitive
   # - target.kmer: a string of k-mer of interest; case-insensitive
   # - output.csv: filename of output csv file
   # - significance: significance level; between 0 and 1
@@ -40,7 +39,7 @@ is.enriched.wrapper = function(input.fasta, input.alphabet, target.kmer, output.
   }
   
   ##### assess k-mer enrichment for each sequence
-  enrich = lapply(seqs, is.enriched, kmer = target.kmer, alphabet = input.alphabet)
+  enrich = lapply(seqs, is.enriched, kmer = target.kmer)
   enrich = do.call(rbind, enrich)
   
   ##### if indicated, correct for multiple testing
@@ -67,11 +66,10 @@ is.enriched.wrapper = function(input.fasta, input.alphabet, target.kmer, output.
 ##### compute empirical p-value as a measure of k-mer enrichment #####
 ######################################################################
 
-is.enriched = function(input.seq, kmer, alphabet){
+is.enriched = function(input.seq, kmer){
   # input:
   # - input.seq: a string of input sequence; case-insentitive
   # - k-mer: a string of k-mer; case-insensitive
-  # - alphabet: a character vector of all possible letters; case-insensitive
   # output:
   # a vector containing 
   # - kmer.hits: number of times the k-mer appears in input.seq
@@ -83,9 +81,7 @@ is.enriched = function(input.seq, kmer, alphabet){
   
   seq.leng = nchar(input.seq)
   input.seq = tolower(input.seq)
-  
-  alphabet = tolower(alphabet)
-  
+
   ### initiate count vector
   count.vec = c()
   
