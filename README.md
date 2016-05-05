@@ -33,10 +33,9 @@ kmer.hits | kmer.p | count.q1 | count.mean | count.median | count.q3 | count.max
 
 ## Usage
 
-`is.enriched.wrapper(input.fasta, input.alphabet, target.kmer, output.csv, significance = 0.05, multiple.testing = NULL)`
+`is.enriched.wrapper(input.fasta, target.kmer, output.csv, significance = 0.05, multiple.testing = NULL)`
 
 * `input.fasta`: FASTA file containing (possibly multiple) sequences; case-insensitive
-* `input.alphabet`: a character vector of all possible letters; case-insensitive
 * `target.kmer`: a string of k-mer of interest; case-insensitive
 * `output.csv`: filename of output csv file
 * `significance`: significance level; between 0 and 1
@@ -54,7 +53,6 @@ For a given sequence, `r_kmer_enrich.R` computes the frequency of all the k-mers
 #### Example 1 (Input FASTA file has only 1 sequence; no correction for multiple testing)
 
 `is.enriched.wrapper(input.fasta = 'sample_input_mapk3.fa',
-                    input.alphabet = c('A', 'T', 'G', 'C'),
                     target.kmer = 'GTC',
                     output.csv = 'sample_output_mapk3.csv',
                     significance = 0.01, multiple.testing = NULL)`
@@ -64,7 +62,6 @@ See `sample_output_mapk3.csv` for output.
 #### Example 2 (Input FASTA file has >1 sequences; correction for multiple testing)
  
 `is.enriched.wrapper(input.fasta = 'sample_input_cd47_brca1.fa',
-                    input.alphabet = c('A', 'T', 'G', 'C'),
                     target.kmer = 'ATTGC',
                     output.csv = 'sample_output_cd47_brca1.csv',
                     significance = 0.01, multiple.testing = 'fdr')`
