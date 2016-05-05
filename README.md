@@ -49,7 +49,7 @@ The output csv file contains the following columns for each input sequence:
 * `count.q1`/`mean`/`median`/`q3`/`max`: summary statistics of counts of all k-mers present
 * `significnt`: `0`/`1`; `1` if `kmer.p`(`.adj`) < `significance`
 
-For a given sequence, `r_kmer_enrich.R` computes the frequency of all the k-mers present in that sequence. Based on this distribution, the empirical (one-tailed) p-value for enrichment of the k-mer of interest is computed. If input contains multiple sequences, correction for multiple testing can be performed using a method of the user's choice (`multple.testing`). The empirical p-value (adjusted p-value in the case of correcting for multiple testing) is then compared with user-defined `significance` level, and a value of `1` indicates significance (p-value < `significance`).
+For a given sequence, `r_kmer_enrich.R` computes the frequency of all the k-mers present in that sequence. Based on this distribution, the empirical (one-tailed) p-value for enrichment of the k-mer of interest is computed. If input contains multiple sequences, correction for multiple testing can be performed using a method of the user's choice (`multple.testing`). The empirical p-value (adjusted p-value in the case of correcting for multiple testing) is then compared to a user-defined `significance` level, and a value of `1` indicates significance (p-value < `significance`).
 
 #### Example 1 (Input FASTA file has only 1 sequence; no correction for multiple testing)
 
