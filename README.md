@@ -1,4 +1,4 @@
-#Assessing k-mer Enrichment of FASTA Sequence(s) Using Empirical p-values 
+#Assessing k-mer Enrichment of FASTA Sequences Using Empirical p-values 
 
 *CBB752 Final Project 2.6, R card, by Julian Q Zhou*
 
