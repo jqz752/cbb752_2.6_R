@@ -14,7 +14,7 @@ is.enriched.wrapper = function(input.fasta, input.alphabet, target.kmer, output.
   #   the possible arguments for 'method' in p.adjust()
   # output:
   # a csv file containing the following columns for each sequence
-  # - kmer.hits: number of times the k-mer of interest appears sequence
+  # - kmer.hits: number of times the k-mer of interest appears in sequence
   # - kmer.p: empirical p-value for enrichment of k-mer of interest
   # - kmer.p.adj: if applicable, adjusted p-value for enrichment of k-mer of interest
   # - count.q1/mean/median/q3/max: summary statistics of counts of all k-mers present
