@@ -14,19 +14,25 @@ is.enriched = function(input.seq, kmer, alphabet){
   seq.leng = nchar(input.seq)
   input.seq = tolower(input.seq)
   
-  count.vec = rep(0, length=4^k)
-  possible.kmers = expand.grid(rep(list(alphabet), k), stringsAsFactors=F)
-  possible.kmers = apply(possible.kmers, 1, function(x){paste(x, collapse="")})
-  names(count.vec) = possible.kmers
+  alphabet = tolower(alphabet)
   
-  # each kmer combination must be unique
-  stopifnot( length(unique(names(count.vec))) == length(count.vec) )
+  count.vec = c()
   
   for (i in 1:(seq.leng-k+1)){
     cur.kmer = substr(input.seq, start=i, stop=i+k-1)
-    count.vec[cur.kmer] = count.vec[cur.kmer] + 1
+    if ( is.null(count.vec[cur.kmer]) || is.na(count.vec[cur.kmer]) ) {
+      # if count.vec is null (when i=1) or cur.kmer not yet in count.vec
+      count.vec = c(count.vec, 1)
+      names(count.vec)[length(count.vec)] = cur.kmer
+    } else {
+      # if cur.kmer already in count.vec
+      count.vec[cur.kmer] = count.vec[cur.kmer] + 1
+    }
   }
-  if (sum(is.na(count.vec)>0)) {
-    warning('There is at least 1 NA in count.vec; something must have gone wrong')
-  }
+  
+  # each kmer combination must be unique
+  stopifnot( length(unique(names(count.vec))) == length(count.vec) )
+  # no 0 or NA allowed
+  stopifnot( sum( is.na(count.vec) | count.vec==0 )==0 )
+
 }
