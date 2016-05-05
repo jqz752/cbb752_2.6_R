@@ -16,7 +16,7 @@ is.enriched.wrapper = function(input.fasta, target.kmer, output.csv,
   # - kmer.hits: number of times the k-mer of interest appears in sequence
   # - kmer.p: empirical p-value for enrichment of k-mer of interest
   # - kmer.p.adj: if applicable, adjusted p-value for enrichment of k-mer of interest
-  # - count.q1/mean/median/q3/max: summary statistics of counts of all k-mers present
+  # - count.min/q1/mean/median/q3/max: summary statistics of counts of all k-mers present
   # - significnt: 0/1; 1 if kmer.p(.adj) < significance
   
   ##### read in fasta file
@@ -74,7 +74,7 @@ is.enriched = function(input.seq, kmer){
   # a vector containing 
   # - kmer.hits: number of times the k-mer appears in input.seq
   # - kmer.p: empirical p-value for k-mer enrichment
-  # - count.q1/mean/median/q3/max: summary statistics of counts of all k-mers present
+  # - count.min/q1/mean/median/q3/max: summary statistics of counts of all k-mers present
   
   kmer = tolower(kmer)
   k = nchar(kmer)
@@ -108,6 +108,7 @@ is.enriched = function(input.seq, kmer){
   
   return(c(kmer.hits = as.numeric(count.vec[kmer]), 
            kmer.p = p.val,
+           count.min = min(count.vec),
            count.q1 = as.numeric(quantile(count.vec, 0.25)),
            count.mean = mean(count.vec),
            count.median = median(count.vec),
