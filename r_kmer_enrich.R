@@ -10,7 +10,7 @@ is.enriched.wrapper = function(input.fasta, input.alphabet, target.kmer, output.
   # - target.kmer: a string of k-mer of interest; case-insensitive
   # - output.csv: filename of output csv file
   # - significance: significance level; between 0 and 1
-  # - multiple.testing: if NULl, no correction for multiple testing; otherwise, one of 
+  # - multiple.testing: if NULL, no correction for multiple testing; otherwise, one of 
   #   the possible arguments for 'method' in p.adjust()
   # output:
   # a csv file containing the following columns for each sequence
