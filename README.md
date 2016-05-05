@@ -26,10 +26,10 @@ Available [here](https://github.com/jqz752/cbb752_2.6_R)
 ## Sample output
 * A comma-separated .csv file that looks like below (e.g. `sample_output_cd47_brca2.csv`):
 
-kmer.hits | kmer.p | count.q1 | count.mean | count.median | count.q3 | count.max | kmer.p.adj |significant
----|---|---|---|---|---|---|---|---
-44|0.390625|26|56.2412109375|53|76|534|0.4921875|0
-87|0.4921875|49|95.1396484375|87.5|128|1128|0.4921875|0
+kmer.hits | kmer.p | count.min | count.q1 | count.mean | count.median | count.q3 | count.max | kmer.p.adj |significant
+---|---|---|---|---|---|---|---|--- | ---
+44|0.390625|1 |26|56.2412109375|53|76|534|0.4921875|0
+87|0.4921875|2 |49|95.1396484375|87.5|128|1128|0.4921875|0
 
 ## Usage
 
@@ -45,7 +45,7 @@ The output csv file contains the following columns for each input sequence:
 * `kmer.hits`: number of times the k-mer of interest appears in the sequence
 * `kmer.p`: empirical p-value for enrichment of k-mer of interest
 * `kmer.p.adj`: if applicable, adjusted p-value for enrichment of the k-mer of interest
-* `count.q1`/`mean`/`median`/`q3`/`max`: summary statistics of counts of all k-mers present
+* `count.min`/`q1`/`mean`/`median`/`q3`/`max`: summary statistics of counts of all k-mers present
 * `significnt`: `0`/`1`; `1` if `kmer.p`(`.adj`) < `significance`
 
 For a given sequence, `r_kmer_enrich.R` computes the frequency of all the k-mers present in that sequence. Based on this distribution, the empirical (one-tailed) p-value for enrichment of the k-mer of interest is computed. If input contains multiple sequences, correction for multiple testing can be performed using a method of the user's choice (`multple.testing`). The empirical p-value (adjusted p-value in the case of correcting for multiple testing) is then compared to a user-defined `significance` level, and a value of `1` indicates significance (p-value < `significance`).
