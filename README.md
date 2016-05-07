@@ -4,7 +4,7 @@
 
 ## Objective
 
-Given a FASTA file and a k-mer of interest, assess enrichment of the k-mer in the sequence(s) contained in the FASTA file.
+Given a [FASTA file](https://en.wikipedia.org/wiki/FASTA_format) and a k-mer of interest, assess enrichment of the k-mer in the sequence(s) contained in the FASTA file.
 
 ## Source code
 
